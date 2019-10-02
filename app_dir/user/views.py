@@ -25,7 +25,7 @@ class UserManagement(APIView):
 
             one_time_password = randint(100000, 999999)
 
-            client = nexmo.Client(key='e76caf5c', secret='C6boNDHAaSawjnp6')
+            client = nexmo.Client(key='TEST', secret='TEST')
 
             client.send_message({
                 'from': 'Nexmo',
