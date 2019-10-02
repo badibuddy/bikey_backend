@@ -25,12 +25,12 @@ class UserManagement(APIView):
 
             one_time_password = randint(100000, 999999)
 
-            client = nexmo.Client(key='key', secret='secret')
+            client = nexmo.Client(key='e76caf5c', secret='C6boNDHAaSawjnp6')
 
             client.send_message({
                 'from': 'Nexmo',
                 'to': phone,
-                'text': one_time_password,
+                'text': "Your OTP is: " + str(one_time_password) + ". It expires in 5 minutes.",
             })
 
             return Response({"success": True,
@@ -46,8 +46,9 @@ class UserManagement(APIView):
 
     def get(self, req):
         try:
-            password = req.GET['password']
             username = req.GET['phoneNumber'].strip('+')
+            password = req.GET['password']
+
             user = User.objects.get(username__exact=username)
             valid = user.check_password(password)
 
@@ -58,7 +59,10 @@ class UserManagement(APIView):
 
             return Response({"success": True,
                              "status": 200,
-                             "user_id": user.pk})
+                             "user_id": user.pk,
+                             "user_first_name": user.first_name,
+                             "user_last_name": user.last_name
+                             })
 
         except Exception as e:
             return Response({"failed": True,

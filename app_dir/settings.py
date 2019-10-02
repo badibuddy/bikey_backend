@@ -26,7 +26,8 @@ SECRET_KEY = 'zyyx49ma%a8(qngoq-9&nx1_^ktqes$cdz^vl(g&v_puu#cze9'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    '7bc7a9be.ngrok.io'
+    'd4ae3fc5.ngrok.io',
+    '127.0.0.1'
 ]
 
 
@@ -83,7 +84,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'postgres',
         'USER': 'postgres',
-        'PASSWORD': 'p0stgr3s',
+        'PASSWORD': 'postgres',
         'HOST': 'localhost',
         'PORT': '',
     }
