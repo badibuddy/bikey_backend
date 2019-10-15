@@ -61,7 +61,8 @@ class UserManagement(APIView):
                              "status": 200,
                              "user_id": user.pk,
                              "user_first_name": user.first_name,
-                             "user_last_name": user.last_name
+                             "user_last_name": user.last_name,
+                             "user_status": user.is_superuser
                              })
 
         except Exception as e:
@@ -70,7 +71,22 @@ class UserManagement(APIView):
                              "error": str(e)}
                             )
 
+    def delete(self, req):
+        try:
+            phone = req.data['phoneNumber'].strip('+')
+            user = User.objects.get(username=phone)
+            user.delete()
+            return Response({"success": True,
+                             "status": 200,
+                             "message": "The user is deleted"})
 
-
+        except User.DoesNotExist:
+            return Response({"success": True,
+                             "status": 400,
+                             "message": "User does not exist"})
+        except Exception as e:
+            return Response({"success": True,
+                             "status": 400,
+                             "message": str(e)})
 
 

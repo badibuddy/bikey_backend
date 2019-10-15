@@ -26,6 +26,7 @@ SECRET_KEY = 'check env'
 DEBUG = True
 
 ALLOWED_HOSTS = [
+    '127.0.0.1',
     '139.162.177.203'
 ]
 
@@ -83,7 +84,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'postgres',
         'USER': 'postgres',
-        'PASSWORD': 'p0stgr3s',
+        'PASSWORD': 'postgres',
         'HOST': 'localhost',
         'PORT': '',
     }
