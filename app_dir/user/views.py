@@ -62,6 +62,8 @@ class UserManagement(APIView):
                              "user_id": user.pk,
                              "user_first_name": user.first_name,
                              "user_last_name": user.last_name,
+                             "user_phone": user.username,
+                             "user_email": user.email,
                              "user_status": user.is_superuser
                              })
 
@@ -88,5 +90,3 @@ class UserManagement(APIView):
             return Response({"success": True,
                              "status": 400,
                              "message": str(e)})
-
-
