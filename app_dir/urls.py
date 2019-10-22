@@ -16,11 +16,12 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from app_dir.user.views import UserManagement
-from app_dir.blog.views import BlogPostsView, SinglePostView
+from app_dir.blog.views import BlogPostsView, SinglePostView, BlogCategoriesView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^user/', UserManagement.as_view(), name='user'),
     url(r'^blogs/', BlogPostsView.as_view(), name='blog'),
     url(r'^blog/', SinglePostView.as_view(), name='single'),
+    url(r'^categories/', BlogCategoriesView.as_view(), name='categories'),
 ]

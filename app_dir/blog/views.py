@@ -10,6 +10,7 @@ class BlogPostsView(APIView):
             posts = list(BlogPost.objects.filter(status=1).order_by('-braaps').values('id',
                                                                                       'title',
                                                                                       'slug',
+                                                                                      'category',
                                                                                       'braaps',
                                                                                       'author__first_name',
                                                                                       'author__last_name',
@@ -19,6 +20,32 @@ class BlogPostsView(APIView):
             return Response({"success": True,
                              "status": 200,
                              "posts": posts
+                             })
+
+        except Exception as e:
+            return Response({"failed": True,
+                             "status": 400,
+                             "error": str(e)}
+                            )
+
+
+class BlogCategoriesView(APIView):
+    def get(self, req):
+        try:
+            category = req.GET['category']
+            categories = list(BlogPost.objects.filter(status=1, category=int(category)).order_by('-braaps').values(
+                                                                                      'id',
+                                                                                      'title',
+                                                                                      'slug',
+                                                                                      'category',
+                                                                                      'braaps',
+                                                                                      'author__first_name',
+                                                                                      'author__last_name',
+                                                                                      'created_on'
+                                                                                      ))
+            return Response({"success": True,
+                             "status": 200,
+                             "posts": categories
                              })
 
         except Exception as e:
