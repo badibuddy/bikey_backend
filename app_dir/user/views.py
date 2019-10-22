@@ -75,7 +75,8 @@ class UserManagement(APIView):
 
     def delete(self, req):
         try:
-            phone = req.data['phoneNumber'].strip('+')
+            phone = req.GET['phoneNumber'].strip('+')
+
             user = User.objects.get(username=phone)
             user.delete()
             return Response({"success": True,
