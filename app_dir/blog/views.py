@@ -60,7 +60,6 @@ class SinglePostView(APIView):
         try:
             author = req.data['phoneNumber'].strip('+')
             user = User.objects.get(username=author)
-            print(user.pk)
             title = req.data['title']
             slug = req.data['slug']
             created_on = req.data['createdOn']
@@ -93,7 +92,14 @@ class SinglePostView(APIView):
         try:
             blog_id = req.GET['id']
 
-            post = list(BlogPost.objects.filter(id=blog_id).values())
+            post = BlogPost.objects.filter(id=blog_id).values('id',
+                                                                   'title',
+                                                                   'slug',
+                                                                   'category',
+                                                                   'braaps',
+                                                                   'author__first_name',
+                                                                   'author__last_name',
+                                                                   'created_on')
 
             return Response({"success": True,
                              "status": 200,
