@@ -99,7 +99,9 @@ class SinglePostView(APIView):
                                                                    'braaps',
                                                                    'author__first_name',
                                                                    'author__last_name',
-                                                                   'created_on')
+                                                                   'created_on',
+                                                                   'content'
+                                                              )
 
             return Response({"success": True,
                              "status": 200,
